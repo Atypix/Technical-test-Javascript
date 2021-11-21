@@ -18,7 +18,7 @@ Go to folder
 
 ```shell script
 
-cd adeo
+cd Technical-test-Javascript
 
 ```
 
