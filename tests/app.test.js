@@ -64,7 +64,7 @@ describe ('Class Count', function () {
 describe ('Class Filter', function () {
 
     let instance = new Filter();
-    instance.init("ry");
+    instance.init("ry", "animals");
 
     describe ('Search for an object by its name recursively in the data', function () {
 
