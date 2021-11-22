@@ -6,9 +6,7 @@ class Dump {
         
     }
 
-    init (value) {
-        
-    }
+    init (value, key) {}
 
     indentation (str, num) {
 

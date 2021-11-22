@@ -22,7 +22,7 @@ class App {
 
             let myClass = eval("new " + className + "()");
 
-            myClass.init(args[key]);
+            myClass.init(args[key], "animals");
 
             myClass.log(myClass.dump(data));
 

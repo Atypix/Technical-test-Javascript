@@ -8,10 +8,10 @@ class Filter extends Dump {
 
     }
 
-    init (value) {
+    init (value, key) {
         
         this.value = value;
-        this.key = "animals";
+        this.key = key;
        
 
     }
