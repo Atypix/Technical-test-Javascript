@@ -2,6 +2,9 @@ const {Dump} = require('./dump.js');
 
 class Filter extends Dump {
 
+    #value
+    #key
+    
     constructor () {
 
         super ();
@@ -10,8 +13,8 @@ class Filter extends Dump {
 
     init (value, key) {
         
-        this.value = value;
-        this.key = key;
+        this.#value = value;
+        this.#key = key;
        
 
     }
@@ -28,15 +31,15 @@ class Filter extends Dump {
 
     displayArray (output, obj, level, param) {
         
-        if (param == this.key) obj = this._filter(obj, this.value);
+        if (param == this.#key) obj = this.#filter(obj, this.#value);
 
-        if (this._validateObj(obj, this.key, this.value) || param == this.key) {
+        if (this.#validateObj(obj, this.#key, this.#value) || param == this.#key) {
 
             output = '[\n';
 
             for (let i = 0; i < obj.length; i++) {
 
-                if (this._validateObj(obj[i], this.key, this.value) || param == this.key)
+                if (this.#validateObj(obj[i], this.#key, this.#value) || param == this.#key)
                     output += this.indentation('   ', level) + this.dump(obj[i], level + 1, param) + "\n";
 
             }
@@ -54,7 +57,7 @@ class Filter extends Dump {
 
     displayObject (output, obj, level, param) {
         
-        if (this._validateObj(obj, this.key, this.value) || param == this.key) {
+        if (this.#validateObj(obj, this.#key, this.#value) || param == this.#key) {
 
             let str = "   {\n";
 
@@ -79,11 +82,11 @@ class Filter extends Dump {
     find (obj, key, value){
 
         
-        return this._findValues(obj, key, value, []);
+        return this.#findValues(obj, key, value, []);
 
     }
 
-    _validateObj (obj, key, value) {
+    #validateObj (obj, key, value) {
         
         let aFiltred = this.find (obj, key, value);
 
@@ -93,7 +96,7 @@ class Filter extends Dump {
 
 
     
-    _findValues (obj, key, value, list) {
+    #findValues (obj, key, value, list) {
 
         if (!obj) return list;
 
@@ -101,7 +104,7 @@ class Filter extends Dump {
 
             for (let i in obj) {
 
-                list = list.concat(this._findValues(obj[i], key, value, []));
+                list = list.concat(this.#findValues(obj[i], key, value, []));
 
             }
 
@@ -111,7 +114,7 @@ class Filter extends Dump {
 
         if (obj[key]) {
             
-            let filtred = this._filter(obj[key], value);
+            let filtred = this.#filter(obj[key], value);
             if (filtred.length > 0) list.push(obj[key]);
 
         }
@@ -124,7 +127,7 @@ class Filter extends Dump {
                 
                 for (let i = 0; i < children.length; i++ ) {
 
-                    list = list.concat(this._findValues(obj[children[i]], key, value, []));
+                    list = list.concat(this.#findValues(obj[children[i]], key, value, []));
 
                 }
 
@@ -135,7 +138,7 @@ class Filter extends Dump {
       
     }
 
-    _filter (aObj, value) {
+    #filter (aObj, value) {
 
         let filtred = [];
 

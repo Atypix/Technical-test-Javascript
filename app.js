@@ -8,11 +8,11 @@ class App {
 
     constructor () {
 
-        this._init();
+        this.#init();
 
     }
 
-    _init () {
+    #init () {
 
         let args = new Arguments(process.argv);
 

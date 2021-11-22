@@ -35,7 +35,7 @@ class Count extends Dump {
 
         let str = "   {\n";
         
-        param = (this._hasArray(obj)) ? this._getCount(obj) : undefined;
+        param = (this.#hasArray(obj)) ? this.#getCount(obj) : undefined;
         
         for (let p in obj) {
             
@@ -51,7 +51,7 @@ class Count extends Dump {
         
     }
 
-    _getCount (obj) {
+    #getCount (obj) {
 
         for (let p in obj) {
 
@@ -66,7 +66,7 @@ class Count extends Dump {
         return ' [0]';
     }
 
-    _hasArray (obj) {
+    #hasArray (obj) {
 
         for (let p in obj) {
             

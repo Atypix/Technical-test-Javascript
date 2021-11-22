@@ -6,11 +6,11 @@ class Arguments {
         this.args = aArg.slice(2);
         this.arg = [];
 
-        return this._validateArgs();
+        return this.#validateArgs();
 
     }
 
-    _validateArgs () {
+    #validateArgs () {
         
         if (this.args.length == 0 )
             throw new Error('You must use a --filter or --count argument');
@@ -18,17 +18,17 @@ class Arguments {
         if (this.args.length > 1 )
             throw new Error('Only one argument is allowed!');
 
-        return this._initArg();
+        return this.#initArg();
 
     }
 
-    _initArg () {
+    #initArg () {
 
         let a = this.args[0].split('=');
         let key = a[0];
         let value = a[1];
 
-        this._validateKey(key);
+        this.#validateKey(key);
 
         key = key.replace(/^--/, '');
         this.arg[key] = value || 0;
@@ -37,7 +37,7 @@ class Arguments {
 
     } 
 
-    _validateKey (key) {
+    #validateKey (key) {
         
         if (key != "--filter" && key != "--count") 
             throw new Error('You must use a --filter or --count argument'); 
